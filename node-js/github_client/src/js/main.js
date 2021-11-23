@@ -1,8 +1,7 @@
 var { Octokit } = require("@octokit/core");
 
-
 class GithubClient {
-    varructor(SecretPersonalToken) {
+    constructor(SecretPersonalToken) {
         if (!SecretPersonalToken) {
             throw {
                 "message": "PLease Fill token"
