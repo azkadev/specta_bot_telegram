@@ -36,6 +36,7 @@ class GithubClient {
             return response.data;
         }
     }
+
     async getFollowing(username) {
         var response = await this.octokit.request("GET /users/{username}/following", {
             "username": String(username)
@@ -54,7 +55,7 @@ class GithubClient {
             return response.data;
         }
     }
-    async getRepo(type = "user", option = {}) {
+    async getRepos(type = "user", option = {}) {
         if (String(type).toLocaleLowerCase() == "user") {
             var response = await this.octokit.request("GET /user/repos", option);
             if (response && response.status == 200 && response.data) {
@@ -88,17 +89,26 @@ class GithubClient {
         }
     }
 
-    async getRepoByUsername(username) {
-
+    async getUserRepos(username) {
         const response = await this.octokit.request("GET /users/{username}/repos", {
-            "username": String(username),
+            "username": String(username)
         });
 
         if (response && response.status == 200 && response.data) {
-            console.log(JSON.stringify(response.data, null, 2));
+            return response.data;
         }
     }
 
+    async getOrgRepos(username) {
+        const response = await this.octokit.request("GET /orgs/{org}/repos", {
+            "org": String(username)
+        });
+
+        if (response && response.status == 200 && response.data) {
+            return response.data;
+        }
+    }
+    
     async getStarredByUsername(username) {
 
         const response = await this.octokit.request("GET /users/{username}/starred", {
@@ -106,10 +116,28 @@ class GithubClient {
         });
 
         if (response && response.status == 200 && response.data) {
-            console.log(JSON.stringify(response.data, null, 2));
+            return response.data;
         }
     }
 
+    async followAccountUser(username = "azkadev") {
+        const response = await this.octokit.request("PUT /user/following/{username}", {
+            "username": username
+        });
+        if (response && response.status == 200 && response.data) {
+            return response.data;
+        }
+    }
+
+    async starsRepoUser(username = "azkadev", repo = "") {
+        const response = await this.octokit.request("PUT /user/starred/{owner}/{repo}", {
+            "owner": username,
+            "repo": repo
+        });
+        if (response && response.status == 200 && response.data) {
+            return response.data;
+        }
+    }
 
 };
 
