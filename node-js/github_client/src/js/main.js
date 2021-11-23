@@ -2,14 +2,25 @@ var { Octokit } = require("@octokit/core");
 
 
 class GithubClient {
-    constructor(SecretPersonalToken) {
+    varructor(SecretPersonalToken) {
         if (!SecretPersonalToken) {
             throw {
                 "message": "PLease Fill token"
             };
         }
         this.octokit = new Octokit({ auth: String(SecretPersonalToken) });
+    }
 
+    async invokeAsync(objectOriginal = {}, newObject = {}) {
+        if (newObject) {
+            for (var key in newObject) {
+                if (Object.hasOwnProperty.call(newObject, key)) {
+                    var loop_data = newObject[key];
+                    objectOriginal[key] = loop_data;
+                }
+            }
+        }
+        return objectOriginal;
     }
 
     async getMe() {
@@ -28,10 +39,9 @@ class GithubClient {
         }
     }
 
-    async getFollowers(username) {
-        var response = await this.octokit.request("GET /users/{username}/followers", {
-            "username": String(username)
-        });
+    async getFollowers(username, option = {}) {
+        var data = await this.invokeAsync({ "username": String(username) }, option);
+        var response = await this.octokit.request("GET /users/{username}/followers", data);
         if (response && response.status == 200 && response.data) {
             return response.data;
         }
@@ -55,6 +65,7 @@ class GithubClient {
             return response.data;
         }
     }
+
     async getRepos(type = "user", option = {}) {
         if (String(type).toLocaleLowerCase() == "user") {
             var response = await this.octokit.request("GET /user/repos", option);
@@ -89,39 +100,33 @@ class GithubClient {
         }
     }
 
-    async getUserRepos(username) {
-        const response = await this.octokit.request("GET /users/{username}/repos", {
-            "username": String(username)
-        });
-
+    async getUserRepos(username, option = {}) {
+        var data = await this.invokeAsync({ "username": String(username) }, option);
+        var response = await this.octokit.request("GET /users/{username}/repos", data);
         if (response && response.status == 200 && response.data) {
             return response.data;
         }
     }
 
     async getOrgRepos(username) {
-        const response = await this.octokit.request("GET /orgs/{org}/repos", {
+        var response = await this.octokit.request("GET /orgs/{org}/repos", {
             "org": String(username)
         });
-
         if (response && response.status == 200 && response.data) {
             return response.data;
         }
     }
-    
-    async getStarredByUsername(username) {
 
-        const response = await this.octokit.request("GET /users/{username}/starred", {
-            "username": String(username)
-        });
-
+    async getStarredByUsername(username, option = {}) {
+        var data = await this.invokeAsync({ "username": String(username) }, option);
+        var response = await this.octokit.request("GET /users/{username}/starred", data);
         if (response && response.status == 200 && response.data) {
             return response.data;
         }
     }
 
     async followAccountUser(username = "azkadev") {
-        const response = await this.octokit.request("PUT /user/following/{username}", {
+        var response = await this.octokit.request("PUT /user/following/{username}", {
             "username": username
         });
         if (response && response.status == 200 && response.data) {
@@ -130,7 +135,7 @@ class GithubClient {
     }
 
     async starsRepoUser(username = "azkadev", repo = "") {
-        const response = await this.octokit.request("PUT /user/starred/{owner}/{repo}", {
+        var response = await this.octokit.request("PUT /user/starred/{owner}/{repo}", {
             "owner": username,
             "repo": repo
         });
