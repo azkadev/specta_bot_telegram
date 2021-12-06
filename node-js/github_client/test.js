@@ -1,7 +1,7 @@
 var lib = require("./src/index");
 
 async function main() {
-    var gh = new lib.GithubClient("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");
+    var gh = new lib.GithubClient("");
     var data = await gh.getFollowers("Tahlreth", {
         "page": 1
     });

@@ -1,6 +1,6 @@
 {
-  "name": "github_client",
-  "version": "1.0.0",
+  "name": "@azkadev/github_client",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
