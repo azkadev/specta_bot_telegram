@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 library specta_bot_telegram;
 
 import 'dart:async';
@@ -12,7 +14,7 @@ import 'package:hive/hive.dart';
 import 'package:path/path.dart' as p;
 
 part "src/database.dart";
-
+part "src/update_callback_query.dart";
 part "src/update_message.dart";
 Future<dynamic> bot({
   required UpdateBot updateBot,
