@@ -17,4 +17,5 @@ RUN wget -qO /etc/apt/sources.list.d/dart_stable.list https://storage.googleapis
 RUN apt-get update
 RUN apt-get install dart -y
 
+
 CMD ["dart", "run"]

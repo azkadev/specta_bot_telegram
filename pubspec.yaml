@@ -14,4 +14,8 @@ dev_dependencies:
   test: ^1.16.0
 dependencies:
   alfred: ^0.1.7
+  galaxeus: ^0.0.3
+  galaxeus_lib: ^0.0.10
+  hive: ^2.2.3
+  path: ^1.8.2
   telegram_client: ^0.3.55
