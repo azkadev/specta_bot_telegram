@@ -32,18 +32,19 @@ void main(List<String> arguments) async {
   Database supabase_db = Database("id", "");
   //DatabaseTg database = DatabaseTg(databaseType: databaseType, supabaseDb: supabase_db, hiveBox: hiveBox, from: from, botUserId: botUserId, dataDefault: dataDefault, path: database_bot_path);
 
-  app.get('/*', (req, res) {
-    try {
-      return Directory('web/');
-    } catch (e) {}
-  });
+  // app.get('/*', (req, res) {
+  //   try {
+  //     return Directory('web/');
+  //   } catch (e) {}
+  // });
   app.all("/", (req, res) {
-    try {
-      res.headers.contentType = ContentType.html;
-      return File(p.join(current_path, "web", "index.html"));
-    } catch (e) {
-      return res.json({"@type": "ok"});
-    }
+    return res.json({"@type": "ok"});
+    // try {
+    //   res.headers.contentType = ContentType.html;
+    //   return File(p.join(current_path, "web", "index.html"));
+    // } catch (e) {
+    //   return res.json({"@type": "ok"});
+    // }
   });
 
   //await runBot(app: app, emitter: emitter, tg: tg, database: database, supabase_db: supabase_db, pathBot: pathBot, clientOption: clientOption, eventBot: eventBot, productionType: productionType, galaxeus: galaxeus);
