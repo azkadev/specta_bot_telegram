@@ -1,11 +1,24 @@
 <p align="center">
     <a href="https://github.com/azkadev">
-        <img src="https://avatars.githubusercontent.com/u/82513502?v=4" alt="Specta">
+        <img src="https://telegra.ph/file/e90bdeab8390b8c0d9df2.png" alt="Specta"
+            width="312"
+            height="312">
     </a>
     <br>
-    <b>Pluggable Telegram UserBot</b>
-    <br> 
+    <a href="https://youtube.com/c/galaxeus">
+        <img
+            src="https://raw.githubusercontent.com/azkadev/azkadev/main/assets/images/powered_galaxeus.png"
+            alt="galaxeus"
+            width="350"
+            height="80"
+        >
+    </a>
+    <br>
+    <b>Pluggable Telegram Bot</b>
+    <br>
 </p>
+
+
 
 # Specta Bot Telegram 🔥
 
