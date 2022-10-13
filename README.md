@@ -52,6 +52,11 @@
     chmod 777 ./index
     ./index
     ```
+
+Jika anda ingin deploy di local download telegram bot api terlebih dahulu
+```bash
+wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.09.01.13.32.08/telegram-bot-api
+```
 ---
 
 ### Features
