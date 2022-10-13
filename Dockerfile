@@ -17,8 +17,11 @@ RUN wget -qO /etc/apt/sources.list.d/dart_stable.list https://storage.googleapis
 RUN apt-get update
 RUN apt-get install dart -y
 
-## download telegram bot api
-RUN wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.09.01.13.32.08/telegram-bot-api
+
+## download 
+RUN wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.10.13.03.02.46/telegram-bot-api
+
+## build native
 RUN dart pub get
 RUN dart compile exe ./bin/specta_bot_telegram.dart -o ./index
 

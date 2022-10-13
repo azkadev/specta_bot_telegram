@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable, empty_catches
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, empty_catches, unused_import
 
 import 'dart:convert';
 import 'dart:io';
@@ -55,7 +55,6 @@ void main(List<String> arguments) async {
   });
 
   //await runBot(app: app, emitter: emitter, tg: tg, database: database, supabase_db: supabase_db, pathBot: pathBot, clientOption: clientOption, eventBot: eventBot, productionType: productionType, galaxeus: galaxeus);
-
   webSocketClient.on(webSocketClient.event_name_update, (update) {
     try {
       if (update is Map) {
