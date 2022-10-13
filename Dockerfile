@@ -19,5 +19,7 @@ RUN apt-get install dart -y
 
 ## download telegram bot api
 RUN wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.09.01.13.32.08/telegram-bot-api
+RUN dart pub get
+RUN dart compile exe ./bin/specta_bot_telegram.dart -o ./index
 
-CMD ["dart", "run"]
+CMD ["./index"]
