@@ -141,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  functions_client:
+    dependency: transitive
+    description:
+      name: functions_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1-dev.5"
   galaxeus:
     dependency: "direct main"
     description:
@@ -169,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  gotrue:
+    dependency: transitive
+    description:
+      name: gotrue
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3"
   hexaminate:
     dependency: transitive
     description:
@@ -225,6 +239,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
+  jwt_decode:
+    dependency: transitive
+    description:
+      name: jwt_decode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.1"
   lints:
     dependency: "direct dev"
     description:
@@ -309,6 +330,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
+  postgrest:
+    dependency: transitive
+    description:
+      name: postgrest
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.11"
   pub_semver:
     dependency: transitive
     description:
@@ -323,6 +351,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0+1"
+  realtime_client:
+    dependency: transitive
+    description:
+      name: realtime_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.15+1"
   shelf:
     dependency: transitive
     description:
@@ -379,6 +414,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  storage_client:
+    dependency: transitive
+    description:
+      name: storage_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6+2"
   stream_channel:
     dependency: transitive
     description:
@@ -393,6 +435,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  supabase:
+    dependency: transitive
+    description:
+      name: supabase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.6"
+  supabase_client:
+    dependency: "direct main"
+    description:
+      name: supabase_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.9"
   tcp_client_dart:
     dependency: transitive
     description:
