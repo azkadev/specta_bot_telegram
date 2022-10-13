@@ -168,7 +168,7 @@ packages:
       name: galaxeus_lib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.10"
+    version: "0.0.14"
   glob:
     dependency: transitive
     description:
