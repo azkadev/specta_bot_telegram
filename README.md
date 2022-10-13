@@ -17,21 +17,58 @@
     <b>Pluggable Telegram Bot</b>
     <br>
 </p>
-
-
+ 
 
 # Specta Bot Telegram 🔥
 
-> **Specta Bot Telegram** is a Powerful , ringan , _Pluggable_ Telegram UserBot dibuat dalam bahasa code _Dart_ menggunakan library [Telegram Client](https://github.com/azkadev/telegram_client).
+> **Specta Bot Telegram** Powerful , ringan , _Pluggable_ Telegram UserBot dibuat dalam bahasa code _Dart_ menggunakan library [Telegram Client](https://github.com/azkadev/telegram_client).
 
-### Support Host
-> semua platform yang sudah mendukung dart / docker / tidak keduanya
+## Demo / Quick overview
+
+---
+## run
+
+1. Clone repo first
+   ```bash
+   git clone https://github.com/azkadev/specta_bot_telegram.git
+   cd specta_bot_telegram
+   ```
+
+2. Run with Docker
+   ```bash
+   docker build . -t specta_bot_Telegram
+   docker run -it specta_bot_Telegram
+   ```
+3. Run with dart
+   ```bash
+   dart pub get
+   dart run
+   ```
+
+4. run native exe
+    ```bash
+    dart pub get
+    dart compile exe ./bin/specta_*_telegram.dart -o ./index
+    chmod 777 ./index
+    ./index
+    ```
+---
 
 ### Features
 
+1. [x] Unlimited Bot
+2. [ ] .
+3. [ ] .
+4. [ ] .
+5. [ ] .
+6. [ ] .
+7. [ ] .
+8. [ ] .
+9. [ ] .
+
 ### Support & Diskusi 👥
 
-> Head over to the [Discussion Group](https://t.me/developer_base_ground) and [Developer Channel](https://t.me/azkadev)
+> [Discussion Group](https://t.me/developer_base_ground) and [Developer Channel](https://t.me/azkadev)
 
 ### Copyright & License 👮
 

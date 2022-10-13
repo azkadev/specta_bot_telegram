@@ -2,7 +2,7 @@ FROM ubuntu
 
 WORKDIR /app/
 
-ADD * /app/
+ADD ./ /app/
 
 RUN apt-get update
 
