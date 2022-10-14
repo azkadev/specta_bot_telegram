@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:alfred/alfred.dart';
 import 'package:galaxeus_lib/galaxeus_lib.dart';
+import 'package:hive/hive.dart';
 import 'package:specta_bot_telegram/specta_bot_telegram.dart';
 import 'package:supabase_client/supabase.dart';
 import 'package:telegram_client/telegram_client.dart';
@@ -65,30 +66,50 @@ void main(List<String> arguments) async {
     eventNameUpdate: "specta_apis_update_bot_tg",
     eventNameInvoke: "specta_apis_invoke_bot_tg",
   );
-  Database supabase_db = Database(supabase_id, supabase_key);
-  // DatabaseTg database = DatabaseTg(
-  //   databaseType: DatabaseType.hive,
-  //   supabaseDb: supabase_db,
-  //   hiveBox: hiveBox,
-  //   from: from,
-  //   botUserId: botUserId,
-  //   dataDefault: dataDefault,
-  //   path: database_bot_path,
-  // );
+  Database supabase_db = Database(supabase_id, supabase_key); 
+  int bot_user_id = int.parse(tg_token_bot.split(":")[0]);
+  Box boxBot = await Hive.openBox(bot_user_id.toString(), path: database_bot_path);
+  var dataDefault = {
+    "id": bot_user_id,
+    "bot_user_id": bot_user_id,
+    "type_bot": "typeBot",
+    "token_bot": tg_token_bot,
+    "owner_user_id": tg_owner_user_id,
+  };
+
+  dataDefault.forEach((key, value) async {
+    try {
+      var getData = boxBot.get(key);
+      if (getData != value) {
+        await boxBot.put(key, value);
+      }
+    } catch (e) {}
+  });
+  DatabaseTg database = DatabaseTg(
+    databaseType: DatabaseType.hive,
+    supabaseDb: supabase_db,
+    hiveBox: boxBot,
+    from: "telegram",
+    botUserId: bot_user_id,
+    dataDefault: dataDefault,
+    path: database_bot_path,
+  );
 
   app.all("/", (req, res) {
     return res.json({"@type": "ok"});
   });
-  // await runBot(
-  //   app: app,
-  //   emitter: emitter,
-  //   tg: tg,
-  //   database: database,
-  //   pathBot: database_bot_path,
-  //   clientOption: clientOption,
-  //   productionType: ProductionType.live,
-  //   event_update_bot: tg_event_update
-  // );
+
+  await runBot(
+    app: app,
+    emitter: emitter,
+    tg: tg,
+    database: database,
+    pathBot: database_bot_path,
+    clientOption: clientOption,
+    productionType: ProductionType.live,
+    event_update_bot: tg_event_update,
+    webSocketClient: webSocketClient,
+  );
 
   webSocketClient.on(webSocketClient.event_name_update, (update) {
     try {
