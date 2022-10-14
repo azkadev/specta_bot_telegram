@@ -8,3 +8,5 @@ build/
 telegram_bot_api
 
 test/
+
+tg_bot_api/
