@@ -9,7 +9,6 @@ FutureOr<Map?> updateMessage(
   required String typeBot,
   required DatabaseTg dbBot,
   required int bot_user_id,
-  required String username_bot,
-  required Database supabase_db,
+  required String username_bot, 
   required ProductionType productionType,
 }) async {}

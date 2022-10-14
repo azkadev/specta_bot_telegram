@@ -128,16 +128,16 @@ Future<dynamic> bot({
     // }
 
     if (update["edited_channel_post"] is Map) {
-      return await updateMessage(update["edited_channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["edited_channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  productionType: productionType);
     }
     if (update["edited_message"] is Map) {
-      return await updateMessage(update["edited_message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["edited_message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  productionType: productionType);
     }
     if (update["channel_post"] is Map) {
-      return await updateMessage(update["channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  productionType: productionType);
     }
     if (update["message"] is Map) {
-      return await updateMessage(update["message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  productionType: productionType);
     }
 
     return {
