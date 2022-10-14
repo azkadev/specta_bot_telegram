@@ -68,7 +68,6 @@ void main(List<String> arguments) async {
       print(e);
     }
   });
-  await app.listen(port, host);
   await webSocketClient.connect(
     onDataUpdate: (data) {
       if (data is String && data.isNotEmpty) {
@@ -81,4 +80,5 @@ void main(List<String> arguments) async {
       print(data);
     },
   );
+  await app.listen(port, host);
 }
