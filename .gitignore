@@ -9,4 +9,6 @@ telegram_bot_api
 
 test/
 
-tg_bot_api/
+tg_bot_api/dbBot
+
+db_bot/
