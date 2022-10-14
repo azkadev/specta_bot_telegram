@@ -154,21 +154,21 @@ packages:
       name: galaxeus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.0.5"
   galaxeus_core_apis:
     dependency: transitive
     description:
       name: galaxeus_core_apis
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.0.5"
   galaxeus_lib:
     dependency: "direct main"
     description:
       name: galaxeus_lib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.14"
+    version: "0.0.17"
   glob:
     dependency: transitive
     description:
@@ -462,7 +462,7 @@ packages:
       name: telegram_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.55"
+    version: "0.3.58"
   term_glyph:
     dependency: transitive
     description:
