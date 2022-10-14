@@ -5,4 +5,4 @@
 # Conventional directory for build output.
 build/
 
-telegram-bot-api
+./telegram-bot-api
