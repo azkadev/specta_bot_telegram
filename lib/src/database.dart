@@ -170,9 +170,14 @@ class DefaultDataBase {
         "count_limit": 10,
       };
 }
+ 
+ enum DatabaseType {
+  supabase,
+  hive
+ }
 
 class DatabaseTg {
-  late String databaseType;
+  late DatabaseType databaseType;
   late Database supabaseDb;
   late Box hiveBox;
   late String from;
@@ -190,11 +195,11 @@ class DatabaseTg {
   });
 
   Future<List<Map>> getAlls() async {
-    if (databaseType == DatabaseType.supabaseDb) {
+    if (databaseType == DatabaseType.supabase) {
       List<Map> es = await supabaseDb.getAll(from: from);
       return es;
     }
-    if (databaseType == DatabaseType.hiveDb) {
+    if (databaseType == DatabaseType.hive) {
       Directory dir = Directory(path);
       List<FileSystemEntity> dirs = dir.listSync();
       List<String> array = [];
@@ -275,7 +280,7 @@ class DatabaseTg {
     String chat_type, {
     required List<Map> defaultValue,
   }) async {
-    if (databaseType == DatabaseType.supabaseDb) {
+    if (databaseType == DatabaseType.supabase) {
       Map? es = await supabaseDb.getMatch(from: from, query: {"bot_user_id": botUserId});
       if (es == null) {
         await supabaseDb.add(from: from, data: dataDefault);
@@ -287,7 +292,7 @@ class DatabaseTg {
         return defaultValue;
       }
     }
-    if (databaseType == DatabaseType.hiveDb) {
+    if (databaseType == DatabaseType.hive) {
       var getData = hiveBox.get(chat_type, defaultValue: defaultValue);
       if (getData is List) {
         return getData.cast<Map>();
@@ -300,7 +305,7 @@ class DatabaseTg {
   }
 
   Future<bool> saveChats(String chatType, List<Map> value) async {
-    if (databaseType == DatabaseType.supabaseDb) {
+    if (databaseType == DatabaseType.supabase) {
       late Map dataUpdate = {};
       dataUpdate[chatType] = value;
       await supabaseDb.update(
@@ -312,13 +317,13 @@ class DatabaseTg {
       );
       return true;
     }
-    if (databaseType == DatabaseType.hiveDb) {
+    if (databaseType == DatabaseType.hive) {
       await hiveBox.put(chatType, value);
       return true;
     }
     return false;
   }
- 
+
   Future<void> checkChat({
     required String chat_type,
     required List<Map> getDatas,
@@ -391,10 +396,5 @@ class DatabaseTg {
       } catch (e) {}
     }
   }
-}
-
-class DatabaseType {
-  static String get hiveDb => "hivedb";
-  static String get supabaseDb => "supabasedb";
 }
  

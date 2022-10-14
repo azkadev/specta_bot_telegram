@@ -19,7 +19,7 @@ RUN apt-get install dart -y
 
 
 ## download 
-RUN wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.10.13.03.02.46/telegram-bot-api
+RUN wget --quiet --show-progress -O ./telegram_bot_api https://github.com/azkadev/telegram_client/releases/download/v2022.10.13.03.02.46/telegram-bot-api
 
 ## build native
 RUN dart pub get

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, non_constant_identifier_names
 
 library specta_bot_telegram;
 
@@ -16,14 +16,13 @@ import 'package:path/path.dart' as p;
 part "src/database.dart";
 part "src/update_callback_query.dart";
 part "src/update_message.dart";
+
 Future<dynamic> bot({
   required UpdateBot updateBot,
   required TelegramBotApi tg,
   required DatabaseTg database,
-  required Database supabase_db,
   required String path,
   required ProductionType productionType,
-  required String databaseType,
 }) async {
   try {
     late Map query = updateBot.query;
@@ -72,7 +71,10 @@ Future<dynamic> bot({
         await tg.request(
           "setWebhook",
           parameters: {
-            "url": Uri.parse(urlWebhook).replace(queryParameters: {...Uri.parse(urlWebhook).queryParameters, "username_bot": getMe["result"]["username"]}).toString(),
+            "url": Uri.parse(urlWebhook).replace(queryParameters: {
+              ...Uri.parse(urlWebhook).queryParameters,
+              "username_bot": getMe["result"]["username"],
+            }).toString(),
           },
           tokenBot: tokenBot,
         );
@@ -97,8 +99,8 @@ Future<dynamic> bot({
       } catch (e) {}
     });
     DatabaseTg dbBot = DatabaseTg(
-      databaseType: databaseType,
-      supabaseDb: supabase_db,
+      databaseType: database.databaseType,
+      supabaseDb: database.supabaseDb,
       hiveBox: boxBot,
       from: "telegram",
       botUserId: bot_user_id,
@@ -126,16 +128,16 @@ Future<dynamic> bot({
     // }
 
     if (update["edited_channel_post"] is Map) {
-      return await updateMessage(update["edited_channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["edited_channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
     }
     if (update["edited_message"] is Map) {
-      return await updateMessage(update["edited_message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["edited_message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
     }
     if (update["channel_post"] is Map) {
-      return await updateMessage(update["channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg,  ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["channel_post"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
     }
     if (update["message"] is Map) {
-      return await updateMessage(update["message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot,  supabase_db: supabase_db, productionType: productionType);
+      return await updateMessage(update["message"], updateBot: updateBot, tokenBot: tokenBot, tg: tg, ownerUserId: ownerUserId, typeBot: typeBot, dbBot: dbBot, bot_user_id: bot_user_id, username_bot: usernameBot, supabase_db: supabase_db, productionType: productionType);
     }
 
     return {
@@ -151,24 +153,20 @@ Future<void> runBot({
   required EventEmitter emitter,
   required TelegramBotApi tg,
   required DatabaseTg database,
-  required Database supabase_db,
   required String pathBot,
   required Map clientOption,
-  required String eventBot,
+  required String event_update_bot,
   required ProductionType productionType,
-  required Galaxeus galaxeus,
 }) async {
-  emitter.on(eventBot, null, (ev, context) async {
+  emitter.on(event_update_bot, null, (ev, context) async {
     if (ev.eventData is UpdateBot) {
       try {
         await bot(
           updateBot: (ev.eventData as UpdateBot),
           tg: tg,
           database: database,
-          supabase_db: supabase_db,
           path: pathBot,
           productionType: productionType,
-          databaseType: "databaseType",
         );
       } catch (e) {}
       return;
@@ -179,7 +177,7 @@ Future<void> runBot({
       Map<String, String> query = req.uri.queryParameters;
       Map<String, dynamic> body = await req.bodyAsJsonMap;
       emitter.emit(
-        eventBot,
+        event_update_bot,
         null,
         UpdateBot(body: body, query: query),
       );
@@ -194,17 +192,7 @@ Future<void> runBot({
       };
     }
   });
-  // DatabaseTg dbBot = DatabaseTg(
-  //   type: databaseType,
-  //   supabaseDb: supabase_db,
-  //   hiveBox: dbTelegram,
-  //   from: "telegram",
-  //   botUserId: 1213131,
-  //   dataDefault: {},
-  //   path: p.join(pathBot, "bot"),
-  // );
-  //initTaskBot(DatabaseTg: dbBot, tg: TelegramBotApi(tg.token_bot, clientOption: clientOption));
-  print("init task bot");
+  print("succes init bot");
   return;
 }
 
