@@ -23,6 +23,7 @@ Future<dynamic> bot({
   required DatabaseTg database,
   required String path,
   required ProductionType productionType,
+  required WebSocketClient webSocketClient,
 }) async {
   try {
     late Map query = updateBot.query;
@@ -157,6 +158,7 @@ Future<void> runBot({
   required Map clientOption,
   required String event_update_bot,
   required ProductionType productionType,
+  required WebSocketClient webSocketClient,
 }) async {
   emitter.on(event_update_bot, null, (ev, context) async {
     if (ev.eventData is UpdateBot) {
@@ -167,6 +169,7 @@ Future<void> runBot({
           database: database,
           path: pathBot,
           productionType: productionType,
+          webSocketClient: webSocketClient,
         );
       } catch (e) {}
       return;

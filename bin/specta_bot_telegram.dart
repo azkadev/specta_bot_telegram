@@ -28,7 +28,7 @@ void main(List<String> arguments) async {
 
   String current_path = Directory.current.path;
   String database_bot_path = p.join(current_path, "db_bot");
-  String tg_bot_api_path = p.join(current_path, "tgbotapi");
+  String tg_bot_api_path = p.join(current_path, "tg-bot-api");
   Directory tg_bot_api_dir = Directory(tg_bot_api_path);
   if (!tg_bot_api_dir.existsSync()) {
     tg_bot_api_dir.createSync(recursive: true);
@@ -59,7 +59,12 @@ void main(List<String> arguments) async {
     tg_token_bot,
     clientOption: clientOption,
   );
-  WebSocketClient webSocketClient = WebSocketClient(host_name, eventEmitter: emitter, eventNameUpdate: "specta_apis_update_bot_tg");
+  WebSocketClient webSocketClient = WebSocketClient(
+    host_name,
+    eventEmitter: emitter,
+    eventNameUpdate: "specta_apis_update_bot_tg",
+    eventNameInvoke: "specta_apis_invoke_bot_tg",
+  );
   Database supabase_db = Database(supabase_id, supabase_key);
   // DatabaseTg database = DatabaseTg(
   //   databaseType: DatabaseType.hive,
@@ -70,17 +75,17 @@ void main(List<String> arguments) async {
   //   dataDefault: dataDefault,
   //   path: database_bot_path,
   // );
- 
+
   app.all("/", (req, res) {
-    return res.json({"@type": "ok"}); 
+    return res.json({"@type": "ok"});
   });
   // await runBot(
   //   app: app,
   //   emitter: emitter,
   //   tg: tg,
-  //   database: database, 
+  //   database: database,
   //   pathBot: database_bot_path,
-  //   clientOption: clientOption, 
+  //   clientOption: clientOption,
   //   productionType: ProductionType.live,
   //   event_update_bot: tg_event_update
   // );
