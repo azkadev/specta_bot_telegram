@@ -23,6 +23,19 @@
 
 > **Specta Bot Telegram** Powerful , ringan , _Pluggable_ Telegram UserBot dibuat dalam bahasa code _Dart_ menggunakan library [Telegram Client](https://github.com/azkadev/telegram_client).
 
+
+[![](https://img.shields.io/badge/specta_bot_telegram-v0.0-darkgreen)](#)
+[![Stars](https://img.shields.io/github/stars/azkadev/specta_bot_telegram?style=flat-square&color=yellow)](https://github.com/azkadev/specta_bot_telegram/stargazers)
+[![Forks](https://img.shields.io/github/forks/azkadev/specta_bot_telegram?style=flat-square&color=orange)](https://github.com/azkadev/specta_bot_telegram/fork)
+[![Size](https://img.shields.io/github/repo-size/azkadev/specta_bot_telegram?style=flat-square&color=green)](https://github.com/azkadev/specta_bot_telegram/)  
+[![CodeFactor](https://www.codefactor.io/repository/github/azkadev/specta_bot_telegram/badge/main)](https://www.codefactor.io/repository/github/azkadev/specta_bot_telegram/overview/main)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/azkadev/specta_bot_telegram/graphs/commit-activity) 
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/azkadev/specta_bot_telegram)
+[![Contributors](https://img.shields.io/github/contributors/azkadev/specta_bot_telegram?style=flat-square&color=green)](https://github.com/azkadev/specta_bot_telegram/graphs/contributors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
+[![License](https://img.shields.io/badge/License-AGPL-blue)](https://github.com/azkadev/specta_bot_telegram/blob/main/LICENSE)
+
+---
 ## Demo / Quick overview
 
 ## Status
