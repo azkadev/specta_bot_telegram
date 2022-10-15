@@ -462,7 +462,7 @@ packages:
       name: telegram_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.58"
+    version: "0.3.60"
   term_glyph:
     dependency: transitive
     description:

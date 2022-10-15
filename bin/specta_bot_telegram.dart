@@ -66,7 +66,7 @@ void main(List<String> arguments) async {
     eventNameUpdate: "specta_apis_update_bot_tg",
     eventNameInvoke: "specta_apis_invoke_bot_tg",
   );
-  Database supabase_db = Database(supabase_id, supabase_key); 
+  Database supabase_db = Database(supabase_id, supabase_key);
   int bot_user_id = int.parse(tg_token_bot.split(":")[0]);
   Box boxBot = await Hive.openBox(bot_user_id.toString(), path: database_bot_path);
   var dataDefault = {
