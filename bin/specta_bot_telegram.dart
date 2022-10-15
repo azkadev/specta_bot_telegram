@@ -28,6 +28,8 @@ void main(List<String> arguments) async {
   String tg_event_update = "tg_update";
 
   String current_path = Directory.current.path;
+  Directory tg_bot_dir = Directory(p.join(current_path, "specta_bot_telegram"));
+  Directory tg_bot_db_dir = Directory(p.join(tg_bot_dir.path, "db"));
   String database_bot_path = p.join(current_path, "db_bot");
   String tg_bot_api_path = p.join(current_path, "tg-bot-api");
   Directory tg_bot_api_dir = Directory(tg_bot_api_path);
@@ -85,14 +87,13 @@ void main(List<String> arguments) async {
       }
     } catch (e) {}
   });
-  DatabaseTg database = DatabaseTg(
-    databaseType: DatabaseType.hive,
-    supabaseDb: supabase_db,
-    hiveBox: boxBot,
-    from: "telegram",
-    botUserId: bot_user_id,
-    dataDefault: dataDefault,
-    path: database_bot_path,
+  DatabaseTg databaseTg = DatabaseTg(
+    databaseLib: DatabaseLib(
+      databaseType: DatabaseType.hive,
+      supabase_db: supabase_db,
+      hive_db: boxBot,
+    ),
+    directory: tg_bot_db_dir,
   );
 
   app.all("/", (req, res) {
@@ -103,8 +104,9 @@ void main(List<String> arguments) async {
     app: app,
     emitter: emitter,
     tg: tg,
-    database: database,
-    pathBot: database_bot_path,
+    databaseLib: databaseTg.databaseLib,
+    tg_bot_dir: tg_bot_dir,
+    tg_bot_db_dir: tg_bot_db_dir,
     clientOption: clientOption,
     productionType: ProductionType.live,
     event_update_bot: tg_event_update,

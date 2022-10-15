@@ -7,7 +7,7 @@ FutureOr<Map?> updateMessage(
   required TelegramBotApi tg,
   required int ownerUserId,
   required String typeBot,
-  required DatabaseTg dbBot,
+  required DatabaseTg databaseTg,
   required int bot_user_id,
   required String username_bot, 
   required ProductionType productionType,

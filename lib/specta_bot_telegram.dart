@@ -20,8 +20,9 @@ part "src/update_message.dart";
 Future<dynamic> bot({
   required UpdateBot updateBot,
   required TelegramBotApi tg,
-  required DatabaseTg database,
-  required String path,
+  required DatabaseLib databaseLib,
+  required Directory tg_bot_dir,
+  required Directory tg_bot_db_dir,
   required ProductionType productionType,
   required WebSocketClient webSocketClient,
 }) async {
@@ -82,7 +83,7 @@ Future<dynamic> bot({
       } catch (e) {}
     }
     int bot_user_id = int.parse(tokenBot.split(":")[0]);
-    Box boxBot = await Hive.openBox(bot_user_id.toString(), path: path);
+    Box boxBot = await Hive.openBox(bot_user_id.toString(), path: tg_bot_db_dir.path);
     var dataDefault = {
       "id": bot_user_id,
       "bot_user_id": bot_user_id,
@@ -99,14 +100,16 @@ Future<dynamic> bot({
         }
       } catch (e) {}
     });
-    DatabaseTg dbBot = DatabaseTg(
-      databaseType: database.databaseType,
-      supabaseDb: database.supabaseDb,
-      hiveBox: boxBot,
-      from: "telegram",
-      botUserId: bot_user_id,
-      dataDefault: dataDefault,
-      path: path,
+
+    DatabaseTg databaseTg = DatabaseTg(
+      databaseLib: DatabaseLib(
+        databaseType: databaseLib.databaseType,
+        supabase_db: databaseLib.supabase_db,
+        hive_db: boxBot,
+      ),
+      directory: Directory(
+        "userbot_path_db",
+      ),
     );
 
     // if (update["inline_query"] is Map) {
@@ -132,7 +135,7 @@ Future<dynamic> bot({
         tg: tg,
         ownerUserId: ownerUserId,
         typeBot: typeBot,
-        dbBot: dbBot,
+        databaseTg: databaseTg,
         bot_user_id: bot_user_id,
         username_bot: usernameBot,
         productionType: productionType,
@@ -147,7 +150,7 @@ Future<dynamic> bot({
         tg: tg,
         ownerUserId: ownerUserId,
         typeBot: typeBot,
-        dbBot: dbBot,
+        databaseTg: databaseTg,
         bot_user_id: bot_user_id,
         username_bot: usernameBot,
         productionType: productionType,
@@ -161,7 +164,7 @@ Future<dynamic> bot({
         tg: tg,
         ownerUserId: ownerUserId,
         typeBot: typeBot,
-        dbBot: dbBot,
+        databaseTg: databaseTg,
         bot_user_id: bot_user_id,
         username_bot: usernameBot,
         productionType: productionType,
@@ -175,7 +178,7 @@ Future<dynamic> bot({
         tg: tg,
         ownerUserId: ownerUserId,
         typeBot: typeBot,
-        dbBot: dbBot,
+        databaseTg: databaseTg,
         bot_user_id: bot_user_id,
         username_bot: usernameBot,
         productionType: productionType,
@@ -189,7 +192,7 @@ Future<dynamic> bot({
         tg: tg,
         ownerUserId: ownerUserId,
         typeBot: typeBot,
-        dbBot: dbBot,
+        databaseTg: databaseTg,
         bot_user_id: bot_user_id,
         username_bot: usernameBot,
         productionType: productionType,
@@ -208,8 +211,9 @@ Future<void> runBot({
   required Alfred app,
   required EventEmitter emitter,
   required TelegramBotApi tg,
-  required DatabaseTg database,
-  required String pathBot,
+  required DatabaseLib databaseLib,
+  required Directory tg_bot_dir,
+  required Directory tg_bot_db_dir,
   required Map clientOption,
   required String event_update_bot,
   required ProductionType productionType,
@@ -221,8 +225,9 @@ Future<void> runBot({
         await bot(
           updateBot: (ev.eventData as UpdateBot),
           tg: tg,
-          database: database,
-          path: pathBot,
+          databaseLib: databaseLib,
+          tg_bot_dir: tg_bot_dir,
+          tg_bot_db_dir: tg_bot_db_dir,
           productionType: productionType,
           webSocketClient: webSocketClient,
         );

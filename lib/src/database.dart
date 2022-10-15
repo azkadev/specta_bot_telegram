@@ -2,6 +2,7 @@
 
 part of specta_bot_telegram;
 
+ 
 class DefaultDataBase {
   static Map<String, String> get check_user => {
         "all": "free",
@@ -170,37 +171,124 @@ class DefaultDataBase {
         "count_limit": 10,
       };
 }
- 
- enum DatabaseType {
-  supabase,
-  hive
- }
+
+enum DatabaseType { supabase, hive }
+
+enum DatabaseDataType { bot, userbot }
+
+class DatabaseLib {
+  late DatabaseType databaseType;
+  late Database supabase_db;
+  late Box hive_db;
+  DatabaseLib({
+    required this.databaseType,
+    required this.supabase_db,
+    required this.hive_db,
+  });
+}
 
 class DatabaseTg {
-  late DatabaseType databaseType;
-  late Database supabaseDb;
-  late Box hiveBox;
-  late String from;
-  late int botUserId;
-  late Map dataDefault;
-  late String path;
+  late DatabaseLib databaseLib;
+  late Directory directory;
   DatabaseTg({
-    required this.databaseType,
-    required this.supabaseDb,
-    required this.hiveBox,
-    required this.from,
-    required this.botUserId,
-    required this.dataDefault,
-    required this.path,
+    required this.databaseLib,
+    required this.directory,
   });
 
-  Future<List<Map>> getAlls() async {
-    if (databaseType == DatabaseType.supabase) {
-      List<Map> es = await supabaseDb.getAll(from: from);
+  Directory getDirectory({DatabaseDataType databaseDataType = DatabaseDataType.bot}) {
+    Directory dir = Directory(p.join(directory.path, databaseDataType.name));
+    if (!dir.existsSync()) {
+      dir.createSync(recursive: true);
+    }
+    return dir;
+  }
+
+  Future<Map?> getData({
+    required int account_id,
+    required DatabaseDataType databaseDataType,
+    bool isSaveNotFound = true,
+    Map? value,
+    String from = "telegram",
+  }) async {
+    value ??= {};
+    if (databaseLib.databaseType == DatabaseType.supabase) {
+      Map? get_data = await databaseLib.supabase_db.getMatch(from: from, query: {
+        "id": account_id,
+      });
+      if (get_data == null) {
+        if (isSaveNotFound) {
+          Map new_data = {};
+          try {
+            new_data.addAll(value);
+          } catch (e) {
+            value.forEach((key, value) {
+              new_data[key] = value;
+            });
+          }
+          await saveData(account_id: account_id, databaseDataType: databaseDataType, newValue: value);
+        } else {
+          return null;
+        }
+        return null;
+      }
+      return get_data;
+    }
+    if (databaseLib.databaseType == DatabaseType.hive) {
+      Directory dir = getDirectory(databaseDataType: databaseDataType);
+      Box box = await Hive.openBox("${account_id}", path: dir.path);
+      if (box.isEmpty) {
+        if (isSaveNotFound) {
+          late Map get_data = box.toMap();
+          try {
+            get_data.addAll(value);
+          } catch (e) {
+            value.forEach((key, value) {
+              get_data[key] = value;
+            });
+          }
+          await saveData(account_id: account_id, databaseDataType: databaseDataType, newValue: value);
+          return get_data;
+        } else {
+          return null;
+        }
+      }
+      return box.toMap();
+    }
+    return null;
+  }
+
+  Future<bool> saveData({
+    required int account_id,
+    required DatabaseDataType databaseDataType,
+    required Map newValue,
+    String from = "telegram",
+  }) async {
+    if (databaseLib.databaseType == DatabaseType.supabase) {
+      await databaseLib.supabase_db.update(
+        from: from,
+        dataOrigin: {
+          "id": account_id,
+        },
+        dataUpdate: newValue,
+      );
+      return true;
+    }
+    if (databaseLib.databaseType == DatabaseType.hive) {
+      Directory dir = getDirectory(databaseDataType: databaseDataType);
+      Box box = await Hive.openBox("${account_id}", path: dir.path);
+      box.putAll(newValue);
+      return true;
+    }
+    return false;
+  }
+
+  Future<List<Map>> getAlls({String from = "telegram"}) async {
+    if (databaseLib.databaseType == DatabaseType.supabase) {
+      List<Map> es = await databaseLib.supabase_db.getAll(from: from);
       return es;
     }
-    if (databaseType == DatabaseType.hive) {
-      Directory dir = Directory(path);
+    if (databaseLib.databaseType == DatabaseType.hive) {
+      Directory dir = getDirectory();
       List<FileSystemEntity> dirs = dir.listSync();
       List<String> array = [];
       for (var i = 0; i < dirs.length; i++) {
@@ -232,9 +320,10 @@ class DatabaseTg {
     required int chat_id,
     bool isSaveNotFound = true,
     Map? value,
+    required int bot_user_id,
   }) async {
     value ??= {};
-    List<Map> getDatas = await getChats(chat_type, defaultValue: []);
+    List<Map> getDatas = await getChats(chat_type: chat_type, defaultValue: {}, bot_user_id: bot_user_id);
     value["id"] = chat_id;
     for (var i = 0; i < getDatas.length; i++) {
       Map loopData = getDatas[i];
@@ -252,14 +341,19 @@ class DatabaseTg {
         });
         getDatas.add(jsonData);
       }
-      await saveChats(chat_type, getDatas);
+      await saveChats(chat_type: chat_type, value: getDatas, bot_user_id: bot_user_id);
       return value;
     }
     return null;
   }
 
-  Future<bool> saveChat({required String chat_type, required int chat_id, required Map newData}) async {
-    List<Map> getDatas = await getChats(chat_type, defaultValue: [newData]);
+  Future<bool> saveChat({
+    required String chat_type,
+    required int chat_id,
+    required Map newData,
+    required int bot_user_id,
+  }) async {
+    List<Map> getDatas = await getChats(chat_type: chat_type, defaultValue: newData, bot_user_id: bot_user_id);
     for (var i = 0; i < getDatas.length; i++) {
       Map loopData = getDatas[i];
       if (loopData["id"] == chat_id) {
@@ -270,55 +364,57 @@ class DatabaseTg {
             loopData[key] = value;
           });
         }
-        return await saveChats(chat_type, getDatas);
+        await saveChats(chat_type: chat_type, value: getDatas, bot_user_id: bot_user_id);
       }
     }
     return false;
   }
 
-  Future<List<Map>> getChats(
-    String chat_type, {
-    required List<Map> defaultValue,
+  Future<List<Map>> getChats({
+    required String chat_type,
+    required Map defaultValue,
+    required int bot_user_id,
+    String from = "telegram",
   }) async {
-    if (databaseType == DatabaseType.supabase) {
-      Map? es = await supabaseDb.getMatch(from: from, query: {"bot_user_id": botUserId});
+    if (databaseLib.databaseType == DatabaseType.supabase) {
+      Map? es = await databaseLib.supabase_db.getMatch(from: from, query: {"bot_user_id": bot_user_id});
       if (es == null) {
-        await supabaseDb.add(from: from, data: dataDefault);
-        return defaultValue;
+        await databaseLib.supabase_db.add(from: from, data: defaultValue);
+        return [defaultValue];
       }
       if (es.containsKey(chat_type)) {
         return (es[chat_type] as List).cast<Map>();
       } else {
-        return defaultValue;
+        return [defaultValue];
       }
     }
-    if (databaseType == DatabaseType.hive) {
-      var getData = hiveBox.get(chat_type, defaultValue: defaultValue);
+    if (databaseLib.databaseType == DatabaseType.hive) {
+      var getData = databaseLib.hive_db.get(chat_type, defaultValue: defaultValue);
       if (getData is List) {
         return getData.cast<Map>();
       } else {
-        await hiveBox.put(chat_type, []);
+        await databaseLib.hive_db.put(chat_type, []);
         return [].cast<Map>();
       }
     }
     return [].cast<Map>();
   }
 
-  Future<bool> saveChats(String chatType, List<Map> value) async {
-    if (databaseType == DatabaseType.supabase) {
+  Future<bool> saveChats({required String chat_type, required List<Map> value, required int bot_user_id, String from = "telegram"}) async {
+    if (databaseLib.databaseType == DatabaseType.supabase) {
       late Map dataUpdate = {};
-      dataUpdate[chatType] = value;
-      await supabaseDb.update(
+      dataUpdate[chat_type] = value;
+      await databaseLib.supabase_db.update(
         from: from,
         dataOrigin: {
-          "bot_user_id": botUserId,
+          "bot_user_id": bot_user_id,
         },
         dataUpdate: dataUpdate,
       );
       return true;
     }
-    if (databaseType == DatabaseType.hive) {
-      await hiveBox.put(chatType, value);
+    if (databaseLib.databaseType == DatabaseType.hive) {
+      await databaseLib.hive_db.put(chat_type, value);
       return true;
     }
     return false;
@@ -328,6 +424,7 @@ class DatabaseTg {
     required String chat_type,
     required List<Map> getDatas,
     required Map getData,
+    required int bot_user_id,
   }) async {
     late bool isFound = false;
     try {
@@ -392,9 +489,8 @@ class DatabaseTg {
 
     if (isFound) {
       try {
-        await saveChats(chat_type, getDatas);
+        await saveChats(chat_type: chat_type, value: getDatas, bot_user_id: bot_user_id);
       } catch (e) {}
     }
   }
 }
- 
