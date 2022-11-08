@@ -50,9 +50,9 @@ void main(List<String> arguments) async {
     executable: "./telegram_bot_api",
     arguments: telegramBotApiServer.optionsParameters(
       local: "yes",
-      apiid: "${tg_api_id}",
-      apihash: tg_api_hash,
-      httpport: "9000",
+      api_id: "${tg_api_id}",
+      api_hash: tg_api_hash,
+      http_port: "9000",
       dir: tg_bot_api_path,
     ),
   );

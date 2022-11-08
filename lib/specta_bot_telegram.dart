@@ -107,9 +107,7 @@ Future<dynamic> bot({
         supabase_db: databaseLib.supabase_db,
         hive_db: boxBot,
       ),
-      directory: Directory(
-        "userbot_path_db",
-      ),
+      directory: tg_bot_db_dir,
     );
 
     // if (update["inline_query"] is Map) {
