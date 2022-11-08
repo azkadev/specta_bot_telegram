@@ -34,7 +34,7 @@ jobs:
       - name: Mkdir build
         run: mkdir build
       - name: Compile dart to exe
-        run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
+        run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
