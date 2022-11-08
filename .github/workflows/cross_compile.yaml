@@ -5,6 +5,18 @@ jobs:
   build:
     name: Update this repo's README with latest blog posts
     runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        include:
+          - os: ubuntu-latest
+            output-name: hello-linux
+          - os: macOS-latest
+            output-name: hello-mac
+          - os: windows-latest
+            output-name: hello-windows.exe
+            
     steps:
       - name: Export Release Timestamp
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
