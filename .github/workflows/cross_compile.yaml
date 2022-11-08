@@ -3,9 +3,8 @@ on: [workflow_dispatch]
 
 jobs:
   build:
-    name: Update this repo's README with latest blog posts
+    name: Compile Program dart cross platform @azkadev
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
@@ -35,7 +34,7 @@ jobs:
       - name: Mkdir build
         run: mkdir build
       - name: Compile dart to exe
-        run: dart compile exe ./bin/specta_bot_telegram.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
+        run: dart compile exe ./bin/*.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
