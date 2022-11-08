@@ -34,7 +34,7 @@ jobs:
       - name: Mkdir build
         run: mkdir build
       - name: Compile dart to exe
-        run: dart compile exe ./bin/*.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
+        run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
@@ -43,7 +43,7 @@ jobs:
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          repo_token: "${{ secrets.TOKEN_GITHUB }}"
+          repo_token: "${{ github.token }}"
           automatic_release_tag: "latest-${{ matrix.output-name }}"
           prerelease: false
           title: "Release ${{ matrix.output-name }}"
