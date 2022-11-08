@@ -32,8 +32,10 @@ jobs:
         run: dart --version
       - name: Install pub Dependencies
         run: dart pub get
-      - run: mkdir build
-      - run: dart compile exe ./bin/specta_bot_telegram.dart -o build/specta_bot_telegram_${{ matrix.output-name }}
+      - name: Mkdir build
+        run: mkdir build
+      - name: Compile dart to exe
+        run: dart compile exe ./bin/specta_bot_telegram.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
