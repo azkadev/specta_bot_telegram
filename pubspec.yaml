@@ -1,7 +1,9 @@
 name: specta_bot_telegram
 description: A sample command-line application.
-version: 1.0.0
-# homepage: https://www.example.com
+version: 0.0.0
+homepage: https://youtube.com/@azkadev
+repository: https://github.com/azkdev/specta_bot_telegram.git
+publish_to: 'none'
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
