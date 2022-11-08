@@ -43,7 +43,7 @@ jobs:
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          repo_token: "${{ github.token }}"
+          repo_token: "${{ secrets.TOKEN_GITHUB }}"
           automatic_release_tag: "latest-${{ matrix.output-name }}"
           prerelease: false
           title: "Release ${{ matrix.output-name }}"
