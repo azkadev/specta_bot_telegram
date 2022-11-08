@@ -11,12 +11,12 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         include:
           - os: ubuntu-latest
-            output-name: hello-linux
+            output-name: linux
           - os: macOS-latest
-            output-name: hello-mac
+            output-name: macos
           - os: windows-latest
-            output-name: hello-windows.exe
-            
+            output-name: windows
+
     steps:
       - name: Export Release Timestamp
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
@@ -33,18 +33,18 @@ jobs:
       - name: Install pub Dependencies
         run: dart pub get
       - run: mkdir build
-      - run: dart compile exe ./bin/specta_bot_telegram.dart -o build/${{ matrix.output-name }}
-      # - name: Publish artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: App
-      #     path: "example/build/app/outputs/apk/debug/*.apk"
+      - run: dart compile exe ./bin/specta_bot_telegram.dart -o build/specta_bot_telegram_${{ matrix.output-name }}
+      - name: Publish artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifact
+          path: build/*
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.TOKEN_GITHUB }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Development Build"
+          title: "Release Build"
           files: |
             build/*
