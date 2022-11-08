@@ -1,0 +1,38 @@
+name: Compile Cross platform
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    name: Update this repo's README with latest blog posts
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Export Release Timestamp
+        run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Set up Dart
+        uses: cedx/setup-dart@v3
+        with:
+          architecture: x64
+          release-channel: stable
+          version: latest
+      - name: check dart version
+        run: dart --version
+      - name: Install pub Dependencies
+        run: dart pub get
+      - run: mkdir build
+      - run: dart compile exe ./bin/specta_bot_telegram.dart -o build/${{ matrix.output-name }}
+      # - name: Publish artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: App
+      #     path: "example/build/app/outputs/apk/debug/*.apk"
+      - name: Publish Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.TOKEN_GITHUB }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Development Build"
+          files: |
+            build/*
