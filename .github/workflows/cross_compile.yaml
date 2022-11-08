@@ -45,6 +45,6 @@ jobs:
           repo_token: "${{ secrets.TOKEN_GITHUB }}"
           automatic_release_tag: "latest-${{ matrix.output-name }}"
           prerelease: false
-          title: "Release Build"
+          title: "Release ${{ matrix.output-name }}"
           files: |
             build/*
