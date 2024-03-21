@@ -1,106 +1,87 @@
-<p align="center">
-    <a href="https://github.com/azkadev">
-        <img src="https://telegra.ph/file/e90bdeab8390b8c0d9df2.png" alt="Specta"
-            width="312"
-            height="312">
-    </a>
-    <br>
-    <a href="https://youtube.com/c/galaxeus">
-        <img
-            src="https://raw.githubusercontent.com/azkadev/azkadev/main/assets/images/powered_galaxeus.png"
-            alt="galaxeus"
-            width="350"
-            height="80"
-        >
-    </a>
-    <br>
-    <b>Pluggable Telegram Bot</b>
-    <br>
-</p>
- 
+PHAgYWxpZ249ImNlbnRlciI+CiAgICA8YSBocmVmPSJodHRwczovL2dpdGh1
+Yi5jb20vYXprYWRldiI+CiAgICAgICAgPGltZyBzcmM9Imh0dHBzOi8vdGVs
+ZWdyYS5waC9maWxlL2U5MGJkZWFiODM5MGI4YzBkOWRmMi5wbmciIGFsdD0i
+U3BlY3RhIgogICAgICAgICAgICB3aWR0aD0iMzEyIgogICAgICAgICAgICBo
+ZWlnaHQ9IjMxMiI+CiAgICA8L2E+CiAgICA8YnI+CiAgICA8YSBocmVmPSJo
+dHRwczovL3lvdXR1YmUuY29tL2MvZ2FsYXhldXMiPgogICAgICAgIDxpbWcK
+ICAgICAgICAgICAgc3JjPSJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVu
+dC5jb20vYXprYWRldi9hemthZGV2L21haW4vYXNzZXRzL2ltYWdlcy9wb3dl
+cmVkX2dhbGF4ZXVzLnBuZyIKICAgICAgICAgICAgYWx0PSJnYWxheGV1cyIK
+ICAgICAgICAgICAgd2lkdGg9IjM1MCIKICAgICAgICAgICAgaGVpZ2h0PSI4
+MCIKICAgICAgICA+CiAgICA8L2E+CiAgICA8YnI+CiAgICA8Yj5QbHVnZ2Fi
+bGUgVGVsZWdyYW0gQm90PC9iPgogICAgPGJyPgo8L3A+CiAKCiMgU3BlY3Rh
+IEJvdCBUZWxlZ3JhbSDwn5SlCgo+ICoqU3BlY3RhIEJvdCBUZWxlZ3JhbSoq
+IFBvd2VyZnVsICwgcmluZ2FuICwgX1BsdWdnYWJsZV8gVGVsZWdyYW0gVXNl
+ckJvdCBkaWJ1YXQgZGFsYW0gYmFoYXNhIGNvZGUgX0RhcnRfIG1lbmdndW5h
+a2FuIGxpYnJhcnkgW1RlbGVncmFtIENsaWVudF0oaHR0cHM6Ly9naXRodWIu
+Y29tL2F6a2FkZXYvdGVsZWdyYW1fY2xpZW50KS4KCgpbIVtdKGh0dHBzOi8v
+aW1nLnNoaWVsZHMuaW8vYmFkZ2Uvc3BlY3RhX2JvdF90ZWxlZ3JhbS12MC4w
+LWRhcmtncmVlbildKCMpClshW1N0YXJzXShodHRwczovL2ltZy5zaGllbGRz
+LmlvL2dpdGh1Yi9zdGFycy9hemthZGV2L3NwZWN0YV9ib3RfdGVsZWdyYW0/
+c3R5bGU9ZmxhdC1zcXVhcmUmY29sb3I9eWVsbG93KV0oaHR0cHM6Ly9naXRo
+dWIuY29tL2F6a2FkZXYvc3BlY3RhX2JvdF90ZWxlZ3JhbS9zdGFyZ2F6ZXJz
+KQpbIVtGb3Jrc10oaHR0cHM6Ly9pbWcuc2hpZWxkcy5pby9naXRodWIvZm9y
+a3MvYXprYWRldi9zcGVjdGFfYm90X3RlbGVncmFtP3N0eWxlPWZsYXQtc3F1
+YXJlJmNvbG9yPW9yYW5nZSldKGh0dHBzOi8vZ2l0aHViLmNvbS9hemthZGV2
+L3NwZWN0YV9ib3RfdGVsZWdyYW0vZm9yaykKWyFbU2l6ZV0oaHR0cHM6Ly9p
+bWcuc2hpZWxkcy5pby9naXRodWIvcmVwby1zaXplL2F6a2FkZXYvc3BlY3Rh
+X2JvdF90ZWxlZ3JhbT9zdHlsZT1mbGF0LXNxdWFyZSZjb2xvcj1ncmVlbild
+KGh0dHBzOi8vZ2l0aHViLmNvbS9hemthZGV2L3NwZWN0YV9ib3RfdGVsZWdy
+YW0vKSAgClshW0NvZGVGYWN0b3JdKGh0dHBzOi8vd3d3LmNvZGVmYWN0b3Iu
+aW8vcmVwb3NpdG9yeS9naXRodWIvYXprYWRldi9zcGVjdGFfYm90X3RlbGVn
+cmFtL2JhZGdlL21haW4pXShodHRwczovL3d3dy5jb2RlZmFjdG9yLmlvL3Jl
+cG9zaXRvcnkvZ2l0aHViL2F6a2FkZXYvc3BlY3RhX2JvdF90ZWxlZ3JhbS9v
+dmVydmlldy9tYWluKQpbIVtNYWludGVuYW5jZV0oaHR0cHM6Ly9pbWcuc2hp
+ZWxkcy5pby9iYWRnZS9NYWludGFpbmVkJTNGLXllcy1ncmVlbi5zdmcpXSho
+dHRwczovL2dpdGh1Yi5jb20vYXprYWRldi9zcGVjdGFfYm90X3RlbGVncmFt
+L2dyYXBocy9jb21taXQtYWN0aXZpdHkpIApbIVtPcGVuIFNvdXJjZSBMb3Zl
+IHN2ZzJdKGh0dHBzOi8vYmFkZ2VzLmZyYXBzb2Z0LmNvbS9vcy92Mi9vcGVu
+LXNvdXJjZS5zdmc/dj0xMDMpXShodHRwczovL2dpdGh1Yi5jb20vYXprYWRl
+di9zcGVjdGFfYm90X3RlbGVncmFtKQpbIVtDb250cmlidXRvcnNdKGh0dHBz
+Oi8vaW1nLnNoaWVsZHMuaW8vZ2l0aHViL2NvbnRyaWJ1dG9ycy9hemthZGV2
+L3NwZWN0YV9ib3RfdGVsZWdyYW0/c3R5bGU9ZmxhdC1zcXVhcmUmY29sb3I9
+Z3JlZW4pXShodHRwczovL2dpdGh1Yi5jb20vYXprYWRldi9zcGVjdGFfYm90
+X3RlbGVncmFtL2dyYXBocy9jb250cmlidXRvcnMpClshW1BScyBXZWxjb21l
+XShodHRwczovL2ltZy5zaGllbGRzLmlvL2JhZGdlL1BScy13ZWxjb21lLWJy
+aWdodGdyZWVuLnN2Zz9zdHlsZT1mbGF0LXNxdWFyZSldKGh0dHBzOi8vbWFr
+ZWFwdWxscmVxdWVzdC5jb20pClshW0xpY2Vuc2VdKGh0dHBzOi8vaW1nLnNo
+aWVsZHMuaW8vYmFkZ2UvTGljZW5zZS1BR1BMLWJsdWUpXShodHRwczovL2dp
+dGh1Yi5jb20vYXprYWRldi9zcGVjdGFfYm90X3RlbGVncmFtL2Jsb2IvbWFp
+bi9MSUNFTlNFKQoKLS0tCiMjIERlbW8gLyBRdWljayBvdmVydmlldwoKIyMg
+U3RhdHVzCj4gYmVsdW0gc2lhcCBkaSBydW4gcHVibGljCgojIyBTdGF0dXMg
+c2NyaXB0Cj4gc2VtdWEgc3VkYWggc2VsZXNhaSBkYW4gc3VkYWggZGkgdGVz
+dCBkaSBwcml2YXRlIG5hbXVuIGJlbHVtIGRpIHB1Ymxpc2gga2UgZ2l0aHVi
+ICggbGFnaSBtaWtpcmluIHN0eWxlIGNvZGUgYWdhciBtdWRhaCBkaSBkZXZl
+bG9wIHNlbXVhIG9yYW5nICkKCgotLS0KIyMgcnVuCgoxLiBDbG9uZSByZXBv
+IGZpcnN0CiAgIGBgYGJhc2gKICAgZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHVi
+LmNvbS9hemthZGV2L3NwZWN0YV9ib3RfdGVsZWdyYW0uZ2l0CiAgIGNkIHNw
+ZWN0YV9ib3RfdGVsZWdyYW0KICAgYGBgCgoyLiBSdW4gd2l0aCBEb2NrZXIK
+ICAgYGBgYmFzaAogICBkb2NrZXIgYnVpbGQgLiAtdCBzcGVjdGFfYm90X1Rl
+bGVncmFtCiAgIGRvY2tlciBydW4gLWl0IHNwZWN0YV9ib3RfVGVsZWdyYW0K
+ICAgYGBgCjMuIFJ1biB3aXRoIGRhcnQKICAgYGBgYmFzaAogICBkYXJ0IHB1
+YiBnZXQKICAgZGFydCBydW4KICAgYGBgCgo0LiBydW4gbmF0aXZlIGV4ZQog
+ICAgYGBgYmFzaAogICAgZGFydCBwdWIgZ2V0CiAgICBkYXJ0IGNvbXBpbGUg
+ZXhlIC4vYmluL3NwZWN0YV8qX3RlbGVncmFtLmRhcnQgLW8gLi9pbmRleAog
+ICAgY2htb2QgNzc3IC4vaW5kZXgKICAgIC4vaW5kZXgKICAgIGBgYAoKSmlr
+YSBhbmRhIGluZ2luIGRlcGxveSBkaSBsb2NhbCBkb3dubG9hZCB0ZWxlZ3Jh
+bSBib3QgYXBpIHRlcmxlYmloIGRhaHVsdQpgYGBiYXNoCndnZXQgLS1xdWll
+dCAtLXNob3ctcHJvZ3Jlc3MgLU8gLi90ZWxlZ3JhbS1ib3QtYXBpIGh0dHBz
+Oi8vZ2l0aHViLmNvbS9hemthZGV2L3RlbGVncmFtX2NsaWVudC9yZWxlYXNl
+cy9kb3dubG9hZC92MjAyMi4wOS4wMS4xMy4zMi4wOC90ZWxlZ3JhbS1ib3Qt
+YXBpCmBgYAotLS0KCiMjIyBGZWF0dXJlcwoKMS4gW3hdIFVubGltaXRlZCBC
+b3QKMi4gWyBdIC4KMy4gWyBdIC4KNC4gWyBdIC4KNS4gWyBdIC4KNi4gWyBd
+IC4KNy4gWyBdIC4KOC4gWyBdIC4KOS4gWyBdIC4KCiMjIyBTdXBwb3J0ICYg
+RGlza3VzaSDwn5GlCgo+IFtEaXNjdXNzaW9uIEdyb3VwXShodHRwczovL3Qu
+bWUvZGV2ZWxvcGVyX2Jhc2VfZ3JvdW5kKSBhbmQgW0RldmVsb3BlciBDaGFu
+bmVsXShodHRwczovL3QubWUvYXprYWRldikKCgojIyBMaWNlbnNlClshW0xp
+Y2Vuc2VdKGh0dHBzOi8vd3d3LmdudS5vcmcvZ3JhcGhpY3MvYWdwbHYzLTE1
+NXg1MS5wbmcpXShMSUNFTlNFKSAgIApTcGVjdGEgVXNlcmJvdCBUZWxlZ3Jh
+bSBpcyBsaWNlbnNlZCB1bmRlciBbR05VIEFmZmVybyBHZW5lcmFsIFB1Ymxp
+YyBMaWNlbnNlXShodHRwczovL3d3dy5nbnUub3JnL2xpY2Vuc2VzL2FncGwt
+My4wLmVuLmh0bWwpIHYzIG9yIGxhdGVyLgoKCiMjIyBDb3B5cmlnaHQgJiBM
+aWNlbnNlIPCfka4KCiogQ29weXJpZ2h0IChDKSAyMDIyIGJ5IFtBemthZGV2
+XShodHRwczovL2dpdGh1Yi5jb20vYXprYWRldikg4p2k77iP77iP
 
-# Specta Bot Telegram 🔥
-
-> **Specta Bot Telegram** Powerful , ringan , _Pluggable_ Telegram UserBot dibuat dalam bahasa code _Dart_ menggunakan library [Telegram Client](https://github.com/azkadev/telegram_client).
-
-
-[![](https://img.shields.io/badge/specta_bot_telegram-v0.0-darkgreen)](#)
-[![Stars](https://img.shields.io/github/stars/azkadev/specta_bot_telegram?style=flat-square&color=yellow)](https://github.com/azkadev/specta_bot_telegram/stargazers)
-[![Forks](https://img.shields.io/github/forks/azkadev/specta_bot_telegram?style=flat-square&color=orange)](https://github.com/azkadev/specta_bot_telegram/fork)
-[![Size](https://img.shields.io/github/repo-size/azkadev/specta_bot_telegram?style=flat-square&color=green)](https://github.com/azkadev/specta_bot_telegram/)  
-[![CodeFactor](https://www.codefactor.io/repository/github/azkadev/specta_bot_telegram/badge/main)](https://www.codefactor.io/repository/github/azkadev/specta_bot_telegram/overview/main)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/azkadev/specta_bot_telegram/graphs/commit-activity) 
-[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/azkadev/specta_bot_telegram)
-[![Contributors](https://img.shields.io/github/contributors/azkadev/specta_bot_telegram?style=flat-square&color=green)](https://github.com/azkadev/specta_bot_telegram/graphs/contributors)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
-[![License](https://img.shields.io/badge/License-AGPL-blue)](https://github.com/azkadev/specta_bot_telegram/blob/main/LICENSE)
-
----
-## Demo / Quick overview
-
-## Status
-> belum siap di run public
-
-## Status script
-> semua sudah selesai dan sudah di test di private namun belum di publish ke github ( lagi mikirin style code agar mudah di develop semua orang )
-
-
----
-## run
-
-1. Clone repo first
-   ```bash
-   git clone https://github.com/azkadev/specta_bot_telegram.git
-   cd specta_bot_telegram
-   ```
-
-2. Run with Docker
-   ```bash
-   docker build . -t specta_bot_Telegram
-   docker run -it specta_bot_Telegram
-   ```
-3. Run with dart
-   ```bash
-   dart pub get
-   dart run
-   ```
-
-4. run native exe
-    ```bash
-    dart pub get
-    dart compile exe ./bin/specta_*_telegram.dart -o ./index
-    chmod 777 ./index
-    ./index
-    ```
-
-Jika anda ingin deploy di local download telegram bot api terlebih dahulu
-```bash
-wget --quiet --show-progress -O ./telegram-bot-api https://github.com/azkadev/telegram_client/releases/download/v2022.09.01.13.32.08/telegram-bot-api
-```
----
-
-### Features
-
-1. [x] Unlimited Bot
-2. [ ] .
-3. [ ] .
-4. [ ] .
-5. [ ] .
-6. [ ] .
-7. [ ] .
-8. [ ] .
-9. [ ] .
-
-### Support & Diskusi 👥
-
-> [Discussion Group](https://t.me/developer_base_ground) and [Developer Channel](https://t.me/azkadev)
-
-
-## License
-[![License](https://www.gnu.org/graphics/agplv3-155x51.png)](LICENSE)   
-Specta Userbot Telegram is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html) v3 or later.
-
-
-### Copyright & License 👮
-
-* Copyright (C) 2022 by [Azkadev](https://github.com/azkadev) ❤️️
+<!-- START GLOBAL CORPORATION -->
+404: Not Found
+<!-- END GLOBAL CORPORATION -->
